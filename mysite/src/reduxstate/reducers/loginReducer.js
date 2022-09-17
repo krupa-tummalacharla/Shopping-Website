@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios'
+import config from '../../config/default'
 
 const initialState ={
     loginRes:{
@@ -13,7 +14,7 @@ export const handleLoginAysnc = createAsyncThunk("loginhandle",async(cred)=>{
     
     const options ={
         method:"post",
-        url:"http://localhost:3060/auth/login",
+        url:`${config.app.backend}/auth/login`,
         headers:{
             "Content-Type":"application/json"
         },

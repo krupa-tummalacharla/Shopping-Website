@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const {Schema} = mongoose
 
 const CartSchema = new Schema({
+    user:{
+        type:Schema.Types.ObjectId,
+        red:"user"
+    },
     id:{
         type:Number,
         required:true,

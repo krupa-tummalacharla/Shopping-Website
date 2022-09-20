@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { logoutReducer } from '../reduxstate/reducers/loginReducer';
+import { signoutReducer } from '../reduxstate/reducers/signupReducer';
 const Navbar = () => {
 
   const location = useLocation();
@@ -13,6 +14,7 @@ const Navbar = () => {
     localStorage.removeItem('token');
     navigate('/login');
     dispatch(logoutReducer())
+    dispatch(signoutReducer())
     console.log(location.pathname)
   }
 

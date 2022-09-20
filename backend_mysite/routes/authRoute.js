@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const validateSchema = require('./validations/userValidation')
-const {validate,ValidationError, Joi }= require('express-validation');
+const validation = require('./validations/userValidation')
 const {body,validationResult} = require('express-validator')
 const User = require('../Models/User');
 const bcrypt = require('bcrypt')
@@ -9,7 +8,8 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/default').app
 const jwtsecret = config.jwtsecret
 
-router.post('/createUser',validate(validateSchema),async (req,res)=>{
+router.post('/createUser',validation,async (req,res)=>{
+
     const {firstName,lastName,email,password,gender} = req.body;
     let success = false;
    let user = await User.findOne({email});
@@ -23,8 +23,8 @@ router.post('/createUser',validate(validateSchema),async (req,res)=>{
     firstName,
     lastName,
     email,
+    gender,
     password:secPwd,
-    gender
    });
    const payload = {
     user:{
@@ -33,7 +33,7 @@ router.post('/createUser',validate(validateSchema),async (req,res)=>{
    }
    const authToken = jwt.sign(payload,jwtsecret);
    success=true;
-   return res.status(200).json({success,authToken})
+   return res.status(200).json({success,authToken,error:""})
    } catch (error) {
     console.error(error.message)
     return res.status(500).send("Internal server Error occured")

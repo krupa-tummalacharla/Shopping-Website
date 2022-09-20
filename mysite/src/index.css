@@ -73,3 +73,9 @@ code {
 .card-img-top:hover{
   transform: scale(1.1);
 }
+.col-sm-3.col-form-label{
+  font-weight: 700;
+  font-size: large;
+  font-style: oblique;
+  font-family: revert;
+}

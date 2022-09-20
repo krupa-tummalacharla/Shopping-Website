@@ -4,6 +4,7 @@ import getCartReducer from './reducers/getCartReducer'
 import jeweleryProducts from './reducers/jeweleryProducts'
 import loginReducer from './reducers/loginReducer'
 import menProducts from './reducers/menProducts'
+import signupReducer from './reducers/signupReducer'
 import womenProducts from './reducers/womenProducts'
 
 
@@ -14,6 +15,7 @@ export const store = configureStore({
         womenCloth:womenProducts,
         allProd:allProducts,
         login:loginReducer,
-        getCart:getCartReducer
+        getCart:getCartReducer,
+        signup:signupReducer
     }
 })

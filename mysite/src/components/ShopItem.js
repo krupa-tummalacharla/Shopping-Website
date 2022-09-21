@@ -15,7 +15,7 @@ const ShopItem = (props) => {
       e.preventDefault();
       if(localStorage.getItem('token')){
         dispatch(addToWishlistAsync(props));
-        navigate('/wishlist')
+        navigate('/wishlist',{state:props})
       }else{
         navigate('/login')
       }

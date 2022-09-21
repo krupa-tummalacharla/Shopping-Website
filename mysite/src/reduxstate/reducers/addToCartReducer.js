@@ -21,7 +21,7 @@ export const addToCartAsync = createAsyncThunk('addtocart',async(input)=>{
             title:input.title,
             image:input.imageUrl,
             price:input.price,
-            
+            quantity:(input.quantity?input.quantity:1)
         })
     })
     return res.data;

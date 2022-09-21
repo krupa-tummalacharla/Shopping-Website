@@ -23,10 +23,11 @@ router.put('/addtocart',fetchUser,async(req,res)=>{
             res.status(200).json({success:true,savedCart,firstItem:true})
         }
         else{
-            const id = cart._id;
+            const id=cart._id;
+            
             cart = await Cart.findByIdAndUpdate(
                 {_id:id},
-                {quantity:cart.quantity+1},
+                {quantity:cart.quantity+(req.body.quantity?req.body.quantity:1)},
                 {new:true}
             );
             return res.status(200).json({success:true,savedCart:cart,firstItem:false})

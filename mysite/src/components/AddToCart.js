@@ -6,16 +6,15 @@ const AddToCart = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getAllCartsAsync());
-
-  })
+  },[dispatch])
   const carts = useSelector(state=>state.getCart.userCart);
   return (
     <div className='container my-3'>
       <h1>Cart</h1>
       
         {carts.length!==0?carts.map(ele=>{
-      return (<div className='row'>
-        <div className="card md-3 my-3" style={{maxWidth: "540px",border:"solid 1px"}} key={ele.id}>
+      return (<div className='row' key={ele.id}>
+        <div className="card md-3 my-3" style={{maxWidth: "540px",border:"solid 1px"}} >
       <div className="row g-0">
         <div className="col-md-4">
           <img src={ele.image} className="img-fluid rounded-start" alt="..."/>

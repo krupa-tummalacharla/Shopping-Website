@@ -26,7 +26,7 @@ router.put('/addtowishlist',fetchUser,async(req,res)=>{
         }
         else{
             const id = wishlist._id;
-            wishlist = await wishlist.findByIdAndUpdate(
+            wishlist = await WishList.findByIdAndUpdate(
                 {_id:id},
                 {quantity:wishlist.quantity+1},
                 {new:true}

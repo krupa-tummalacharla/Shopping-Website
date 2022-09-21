@@ -24,7 +24,7 @@ const WishList = () => {
     <div className='container my-3'>
     <h1>WishList</h1>
     <div className="row row-cols-1 row-cols-md-3 g-4">
-    {wishlist.length!==0?wishlist.map(ele=>{
+    {localStorage.getItem('token')&&wishlist.length!==0?wishlist.map(ele=>{
     return( <div className="col" key={ele.id} ><div className="card" style={{
       display:"flex",
       justifyContent:"flex-end",

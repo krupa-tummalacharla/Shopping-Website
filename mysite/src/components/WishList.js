@@ -9,34 +9,36 @@ const WishList = () => {
 
   })
   const handleAddtoCart =()=>{
-    
+
   }
   const wishlist= useSelector(state=>state.wishlist.getWishlist)
   return (
     <div className='container my-3'>
     <h1>WishList</h1>
-   {wishlist.length!==0?wishlist.map(ele=>{
-    return (<div className="card mb-3 my-3" style={{maxWidth: "540px"}} key={ele.id}>
-    <div className="row g-0">
-      <div className="col-md-4">
-        <img src={ele.image} className="img-fluid rounded-start" alt="..."/>
-      </div>
-      <div className="col-md-8">
-        <div className="card-body">
-          <h5 className="card-title">{ele.title}</h5>&nbsp;
-          <h6 className="card-text"><b>Price: ${ele.price}</b></h6>&nbsp;
-          <h5>Qnt:{ele.quantity}</h5>&nbsp;
-          <div className='row'>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    {wishlist.length!==0?wishlist.map(ele=>{
+    return(<div class="card" style={{
+      display:"flex",
+      justifyContent:"flex-end",
+      border:"groove 3px",
+      position:"static"
+  }}>
+      <img src={ele.image} class="card-img-top" alt="..." style={{width:"295px", height:"205px",padding:"10px 0 0 63px"}}/>
+      <div class="card-body">
+        <h5 class="card-title">{ele.title}</h5>
+        <p class="card-text"><span>Price: ${ele.price}</span></p>
+        <p class="card-text"><span>Qnt:{ele.quantity}</span></p>
+        <div className='row'>
           <div className="col-md-8">
           <button className='btn btn-dark mx-3'>Delete</button>
           <button className='btn btn-dark'onClick={handleAddtoCart}>AddToCart</button>
           </div>
           </div>
-        </div>
       </div>
-    </div>
-  </div>)
-   }):<h1>Cart is Empty</h1>}
+    </div>)}):<h1>Please login to add wishlist</h1>}
+  </div>
+  </div>
   </div>
   )
 }

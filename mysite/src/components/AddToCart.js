@@ -12,8 +12,10 @@ const AddToCart = () => {
   return (
     <div className='container my-3'>
       <h1>Cart</h1>
-     {carts.length!==0?carts.map(ele=>{
-      return (<div className="card mb-3 my-3" style={{maxWidth: "540px"}} key={ele.id}>
+      
+        {carts.length!==0?carts.map(ele=>{
+      return (<div className='row'>
+        <div className="card md-3 my-3" style={{maxWidth: "540px",border:"solid 1px"}} key={ele.id}>
       <div className="row g-0">
         <div className="col-md-4">
           <img src={ele.image} className="img-fluid rounded-start" alt="..."/>
@@ -30,10 +32,13 @@ const AddToCart = () => {
             </div>
             </div>
           </div>
-        </div>
       </div>
-    </div>)
+    </div>
+    </div>
+      </div>)
      }):<h1>Cart is Empty</h1>}
+      
+     
     </div>
   )
 }

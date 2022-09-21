@@ -51,18 +51,19 @@ const Navbar = () => {
         </li>
       </ul>
     
-{!localStorage.getItem('token')?(<div className="dropdown">
+<div className="dropdown">
   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
   <i className="fa-solid fa-user"></i>
   </button>
-  <ul className="dropdown-menu">
+  {!localStorage.getItem('token')?(<ul className="dropdown-menu">
     <li><button className="dropdown-item" onClick={handleLogin}>Login</button></li>
     <li><Link className="dropdown-item" to="/signup">Signup</Link></li>
-  </ul>
-  
-  
-</div>):<button className="nav-item d-flex" onClick={handleLogout}>Logout</button>}
-
+  </ul>):
+(<ul className='dropdown-menu'>
+    <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
+    <li><button className="dropdown-item">Profile</button></li>
+ </ul>)}
+</div>
     <li className='nav-item d-flex'>
     <Link className="nav-link" to="/wishlist" role="button" style={{ fontSize: "1.5rem",
   marginLeft: "5px",

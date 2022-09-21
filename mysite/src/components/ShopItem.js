@@ -1,12 +1,25 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { addToWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
 
 const ShopItem = (props) => {
     const {title, imageUrl, price} = props;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleClick=(e)=>{
       e.preventDefault();
       navigate('/details',{state:props})
+    }
+    const handleWishlist =(e)=>{
+      e.preventDefault();
+      if(localStorage.getItem('token')){
+        dispatch(addToWishlistAsync(props));
+        navigate('/wishlist')
+      }else{
+        navigate('/login')
+      }
+      
     }
   return (
     <div className='my-3'>
@@ -26,9 +39,9 @@ const ShopItem = (props) => {
           <h5 className="card-text">
             Price: $ {price}
           </h5>
-          <Link to="/wishlist" className="btn btn-dark my-1">
+          <button className="btn btn-dark my-1" onClick={handleWishlist}>
            WISHLIST <i className="fa-regular fa-heart"></i>
-          </Link>
+          </button>
         </div>
       </div>
       </div>

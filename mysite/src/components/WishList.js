@@ -43,7 +43,7 @@ const WishList = () => {
           </div>
           </div>
       </div>
-    </div></div>)}):<h1>Please login to add wishlist</h1>}
+    </div></div>)}):localStorage.getItem('token')?<h1>Please add your wishlist</h1>:<h1>Please login to add wishlist</h1>}
   </div>
   
   </div>

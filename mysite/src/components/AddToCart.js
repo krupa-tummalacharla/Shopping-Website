@@ -35,7 +35,7 @@ const AddToCart = () => {
     </div>
     </div>
       </div>)
-     }):<h1>Cart is Empty</h1>}
+     }):localStorage.getItem('token')?<h1>Please add your Cart</h1>:<h1>Please login to add Cart</h1>}
       
      
     </div>

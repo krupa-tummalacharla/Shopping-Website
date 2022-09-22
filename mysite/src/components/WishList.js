@@ -7,9 +7,10 @@ import { getAllWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
 const WishList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const wishlist= useSelector(state=>state.wishlist.getWishlist)
   useEffect(()=>{
     dispatch(getAllWishlistAsync());   
-  },[dispatch])
+  },[dispatch,wishlist])
   const handleAddtoCart =(ele)=>{
     if(localStorage.getItem('token')){
       dispatch(addToCartAsync(ele));
@@ -19,7 +20,7 @@ const WishList = () => {
       navigate('/login')
     }
   }
-  const wishlist= useSelector(state=>state.wishlist.getWishlist)
+  
   return (
     <div className='container my-3'>
     <h1>WishList</h1>

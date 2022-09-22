@@ -4,10 +4,11 @@ import { getAllCartsAsync } from '../reduxstate/reducers/getCartReducer';
 
 const AddToCart = () => {
   const dispatch = useDispatch();
+  const carts = useSelector(state=>state.getCart.userCart);
   useEffect(()=>{
     dispatch(getAllCartsAsync());
-  },[dispatch])
-  const carts = useSelector(state=>state.getCart.userCart);
+  },[dispatch,carts])
+  
   return (
     <div className='container my-3'>
       <h1>Cart</h1>

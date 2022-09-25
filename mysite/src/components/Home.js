@@ -27,7 +27,6 @@ const Home = () => {
   },[dispatch])
 
   const products = useSelector((state)=>state.allProd.allProducts);
- 
   return (
     <>
     <div className="container">
@@ -88,6 +87,8 @@ const Home = () => {
                 title ={ele.title}
                 price={ele.price}
                 imageUrl ={ele.image}
+                id={ele.id}
+                category={ele.category}
                 />
               </div>
             )

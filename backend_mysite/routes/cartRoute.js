@@ -53,8 +53,10 @@ router.get('/getAllCarts',fetchUser,async(req,res)=>{
 
 router.delete('/deleteCartItem/:id',fetchUser,async(req,res)=>{
     try {
-        console.log(req.params.id)
         let cart = await Cart.findOne({_id:req.params.id});
+        if(cart.user.toString()!==req.user.id){
+            return res.status(400).json({success:false,message:"user not allowed to delete"})
+        }
         if(cart){
             let removed = await Cart.findByIdAndDelete(req.params.id)
             if(removed){

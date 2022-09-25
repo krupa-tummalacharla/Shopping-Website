@@ -47,8 +47,11 @@ router.get('/getAllWishlists',fetchUser,async(req,res)=>{
 
 router.delete('/deleteWishlist/:id',fetchUser,async(req,res)=>{
     try {
-        console.log(req.params.id)
+        
         let wishlist = await Wishlist.findOne({_id:req.params.id});
+        if(wishlist.user.toString()!==req.user.id){
+            return res.status(400).json({success:false,message:"user not allowed to delete"})
+        }
         if(wishlist){
             let removed = await WishList.findByIdAndDelete(req.params.id)
             if(removed){

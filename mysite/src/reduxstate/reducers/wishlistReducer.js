@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, current} from '@reduxjs/toolkit';
 import axios from 'axios'
 import config from '../../config/default'
 
@@ -40,6 +40,19 @@ export const getAllWishlistAsync = createAsyncThunk('getallwishlist',async()=>{
     return res.data.allWishlists;
 })
 
+export const deleteWishlistAsync = createAsyncThunk('deleteitem',async(input)=>{
+    const res = await axios({
+        method:"delete",
+        url:`${config.app.backend}/wishlist/deleteWishlist/${input._id}`,
+        headers:{
+            "Content-Type":"application",
+          "auth-token":localStorage.getItem("token")
+        },
+    })
+
+    return res.data.wishlist;
+})
+
 const addToWishlistSlice = createSlice({
     name:"addToWishlistReducer",
     initialState,
@@ -48,10 +61,15 @@ const addToWishlistSlice = createSlice({
     },
     extraReducers:{
         [addToWishlistAsync.fulfilled]:(state,{payload})=>{
-            return state.addedWishlist.push(payload);
+             state.addedWishlist.push(payload);
         },
         [getAllWishlistAsync.fulfilled]:(state,{payload})=>{
             return {...state,getWishlist:payload}
+        },
+        [deleteWishlistAsync.fulfilled]:(state,{payload})=>{
+            let arr = JSON.parse(JSON.stringify(current(state.getWishlist)));
+            const newWishlist = arr.filter(ele=>ele._id!==payload._id);
+            return {...state, getWishlist:newWishlist};
         }
     }
 })

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCartAsync } from '../reduxstate/reducers/addToCartReducer';
-import { getAllWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
+import { deleteWishlistAsync, getAllWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
 
 const WishList = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const WishList = () => {
   const wishlist= useSelector(state=>state.wishlist.getWishlist)
   useEffect(()=>{
     dispatch(getAllWishlistAsync());   
-  },[dispatch,wishlist])
+  },[dispatch])
   const handleAddtoCart =(ele)=>{
     if(localStorage.getItem('token')){
       dispatch(addToCartAsync(ele));
@@ -20,7 +20,12 @@ const WishList = () => {
       navigate('/login')
     }
   }
-  
+  const handelDeleteWishlist =(ele)=>{
+    if(localStorage.getItem('token')){
+      dispatch(deleteWishlistAsync(ele));
+
+    }
+  }
   return (
     <div className='container my-3'>
     <h1>WishList</h1>
@@ -39,7 +44,7 @@ const WishList = () => {
         <p className="card-text"><span>Qnt:{ele.quantity}</span></p>
         <div className='row'>
           <div className="col-md-8">
-          <button className='btn btn-dark mx-3'>Delete</button>
+          <button onClick={()=>handelDeleteWishlist(ele)} className='btn btn-dark mx-3'>Delete</button>
           <button className='btn btn-dark'onClick={()=>handleAddtoCart(ele)}>AddToCart</button>
           </div>
           </div>

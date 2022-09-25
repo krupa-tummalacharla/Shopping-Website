@@ -25,13 +25,7 @@ router.put('/addtowishlist',fetchUser,async(req,res)=>{
             res.status(200).json({success:true,savedWishlist,firstItem:true})
         }
         else{
-            const id = wishlist._id;
-            wishlist = await WishList.findByIdAndUpdate(
-                {_id:id},
-                {quantity:wishlist.quantity+1},
-                {new:true}
-            );
-            return res.status(200).json({success:true,savedWishlist:wishlist,firstItem:false})
+            return res.status(400).json({success:false,error:"error while adding item"});
         }
        
     } catch (error) {
@@ -45,6 +39,29 @@ router.get('/getAllWishlists',fetchUser,async(req,res)=>{
     try {
         const allWishlists = await WishList.find({user:req.user.id});
         res.status(200).json({allWishlists})
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
+router.delete('/deleteWishlist/:id',fetchUser,async(req,res)=>{
+    try {
+        console.log(req.params.id)
+        let wishlist = await Wishlist.findOne({_id:req.params.id});
+        if(wishlist){
+            let removed = await WishList.findByIdAndDelete(req.params.id)
+            if(removed){
+                return res.status(200).json({success:true,wishlist:removed,message:"removed successfully"})
+            }
+            else{
+                return res.status(400).json({success:false,message:"some error occured"});
+            }
+            
+        }
+        else{
+            return res.status(400).json({success:false,message:"item not found"});
+        }
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({error:"Internal Server Error"})

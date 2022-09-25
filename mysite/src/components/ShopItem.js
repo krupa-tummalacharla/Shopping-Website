@@ -1,10 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { addToWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
 
 const ShopItem = (props) => {
-    const {title, imageUrl, price} = props;
+    const {title, imageUrl, price,id} = props;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleClick=(e)=>{
@@ -21,6 +21,8 @@ const ShopItem = (props) => {
       }
       
     }
+    const wishlist= useSelector(state=>state.wishlist.getWishlist)
+    // console.log(wishlist)
   return (
     <div className='my-3'>
     <div className="card" style={{
@@ -39,7 +41,7 @@ const ShopItem = (props) => {
           <h5 className="card-text">
             Price: $ {price}
           </h5>
-          <button className="btn btn-dark my-1" onClick={handleWishlist}>
+          <button disabled={wishlist.filter(ele=>ele.id===id).length>0} className="btn btn-dark my-1" onClick={handleWishlist}>
            WISHLIST <i className="fa-regular fa-heart"></i>
           </button>
         </div>

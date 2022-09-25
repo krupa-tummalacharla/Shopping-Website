@@ -5,7 +5,8 @@ import config from '../../config/default'
 const initialState ={
     loginRes:{
        success:"",
-       authToken:""
+       authToken:"",
+       error:""
     }
 }
 
@@ -34,7 +35,7 @@ const loginSlice = createSlice({
     initialState,
     reducers:{
         logoutReducer:(state,{payload})=>{
-            return {...state,loginRes:{success:false,authToken:""}}
+            return {...state,loginRes:{success:false,authToken:"",error:""}}
         }
     },
     extraReducers:{

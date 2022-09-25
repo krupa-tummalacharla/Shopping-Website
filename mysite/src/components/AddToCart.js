@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllCartsAsync } from '../reduxstate/reducers/getCartReducer';
+import { deleteCartItemAsync, getAllCartsAsync } from '../reduxstate/reducers/getCartReducer';
 
 const AddToCart = () => {
   const dispatch = useDispatch();
   const carts = useSelector(state=>state.getCart.userCart);
   useEffect(()=>{
     dispatch(getAllCartsAsync());
-  },[dispatch,carts])
-  
+  },[dispatch])
+  const handleCartItemDelete = (ele)=>{
+    dispatch(deleteCartItemAsync(ele));
+  }
   return (
     <div className='container my-3'>
       <h1>Cart</h1>
@@ -27,7 +29,7 @@ const AddToCart = () => {
             <h5>Qnt:{ele.quantity}</h5>&nbsp;
             <div className='row'>
             <div className="col-md-8">
-            <button className='btn btn-dark mx-3'>Delete</button>
+            <button onClick={()=>handleCartItemDelete(ele)} className='btn btn-dark mx-3'>Delete</button>
             <button className='btn btn-dark'>Buy Now</button>
             </div>
             </div>

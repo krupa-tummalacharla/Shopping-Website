@@ -50,4 +50,28 @@ router.get('/getAllCarts',fetchUser,async(req,res)=>{
     }
 })
 
+
+router.delete('/deleteCartItem/:id',fetchUser,async(req,res)=>{
+    try {
+        console.log(req.params.id)
+        let cart = await Cart.findOne({_id:req.params.id});
+        if(cart){
+            let removed = await Cart.findByIdAndDelete(req.params.id)
+            if(removed){
+                return res.status(200).json({success:true,cart:removed,message:"removed successfully"})
+            }
+            else{
+                return res.status(400).json({success:false,message:"some error occured"});
+            }
+            
+        }
+        else{
+            return res.status(400).json({success:false,message:"item not found"});
+        }
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
 module.exports=router

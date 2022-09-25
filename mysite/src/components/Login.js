@@ -53,7 +53,9 @@ useEffect(()=>{
     <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
   </div>
   <button type="submit" className="btn btn-dark">Submit</button>
-</form></div>
+</form>
+{/* {!res.success&&res.error?<h1>Please enter correct Details</h1>:""} */}
+</div>
   )
 }
 

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { addToWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
 
 const ShopItem = (props) => {
-    const {title, imageUrl, price,id} = props;
+    const {title, image, price,id} = props;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleClick=(e)=>{
@@ -32,7 +32,7 @@ const ShopItem = (props) => {
         position:"static"
     }}>
       <Link onClick={handleClick} to="/">
-      <img src={imageUrl} className="card-img-top" alt="..."  style={{width:"254px", height:"230px"}}/>
+      <img src={image} className="card-img-top" alt="..."  style={{width:"254px", height:"230px"}}/>
       </Link>
         
         <div className="card-body">

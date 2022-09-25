@@ -20,7 +20,7 @@ export const addToWishlistAsync = createAsyncThunk('addtowishlist',async(input)=
             category:input.category,
             description:input.description,
             title:input.title,
-            image:input.imageUrl,
+            image:input.image,
             price:input.price,
             
         })

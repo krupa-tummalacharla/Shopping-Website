@@ -7,7 +7,7 @@ const DetailsPage = (props) => {
     const {state }= useLocation();
     const dispatch = useDispatch();
     const navigate= useNavigate();
-    const {description, imageUrl, price,title}= state;
+    const {description, image, price,title}= state;
     const handleAddtoCart =(e)=>{
       e.preventDefault();
       if(localStorage.getItem('token')){
@@ -23,7 +23,7 @@ const DetailsPage = (props) => {
       <div className="row"> 
  <div className="column left" >
     <picture>
-        <img className="img-magnifier-container" src={imageUrl} alt="..." style={{width:"150%",borderRadius:"10px"}}/>
+        <img className="img-magnifier-container" src={image} alt="..." style={{width:"150%",borderRadius:"10px"}}/>
         </picture>
  </div>          
  <div className="column right">

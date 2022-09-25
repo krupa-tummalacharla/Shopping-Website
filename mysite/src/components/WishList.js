@@ -14,6 +14,7 @@ const WishList = () => {
   const handleAddtoCart =(ele)=>{
     if(localStorage.getItem('token')){
       dispatch(addToCartAsync(ele));
+      dispatch(deleteWishlistAsync(ele));
       navigate('/addtocart')
     }
     else{

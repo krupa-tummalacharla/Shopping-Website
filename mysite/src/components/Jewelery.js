@@ -25,7 +25,7 @@ const products= useSelector((state)=>state.jeweleryProd.jewelery)
                 description ={ele.description}
                 title ={ele.title}
                 price={ele.price}
-                imageUrl ={ele.image}
+                image ={ele.image}
                 />
               </div>
             )

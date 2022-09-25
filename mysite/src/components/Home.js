@@ -86,7 +86,7 @@ const Home = () => {
                 description ={ele.description}
                 title ={ele.title}
                 price={ele.price}
-                imageUrl ={ele.image}
+                image ={ele.image}
                 id={ele.id}
                 category={ele.category}
                 />

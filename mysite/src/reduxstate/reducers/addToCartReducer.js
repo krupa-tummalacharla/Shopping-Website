@@ -19,7 +19,7 @@ export const addToCartAsync = createAsyncThunk('addtocart',async(input)=>{
             category:input.category,
             description:input.description,
             title:input.title,
-            image:input.imageUrl,
+            image:input.image,
             price:input.price,
             quantity:(input.quantity?input.quantity:1)
         })

@@ -41,7 +41,7 @@ const ShopItem = (props) => {
           <h5 className="card-text">
             Price: $ {price}
           </h5>
-          <button disabled={wishlist.filter(ele=>ele.id===id).length>0} className="btn btn-dark my-1" onClick={handleWishlist}>
+          <button disabled={wishlist.filter(ele=>ele.id===id).length>0&&localStorage.getItem('token')} className="btn btn-dark my-1" onClick={handleWishlist}>
            WISHLIST <i className="fa-regular fa-heart"></i>
           </button>
         </div>

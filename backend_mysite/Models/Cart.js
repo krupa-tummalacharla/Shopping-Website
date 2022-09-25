@@ -9,7 +9,6 @@ const CartSchema = new Schema({
     id:{
         type:Number,
         required:true,
-        unique:true
     },
     title:{
         type:String,

@@ -55,7 +55,7 @@ router.delete('/deleteCartItem/:id',fetchUser,async(req,res)=>{
     try {
         let cart = await Cart.findOne({_id:req.params.id});
         if(cart.user.toString()!==req.user.id){
-            return res.status(400).json({success:false,message:"user not allowed to delete"})
+            return res.status(401).json({success:false,message:"user not allowed to delete"})
         }
         if(cart){
             let removed = await Cart.findByIdAndDelete(req.params.id)
@@ -68,7 +68,7 @@ router.delete('/deleteCartItem/:id',fetchUser,async(req,res)=>{
             
         }
         else{
-            return res.status(400).json({success:false,message:"item not found"});
+            return res.status(404).json({success:false,message:"item not found"});
         }
     } catch (error) {
         console.error(error.message);

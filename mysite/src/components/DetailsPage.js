@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { addToCartAsync } from '../reduxstate/reducers/addToCartReducer';
 
+
 const DetailsPage = (props) => {
     const {state }= useLocation();
     const dispatch = useDispatch();

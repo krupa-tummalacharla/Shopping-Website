@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCartAsync } from '../reduxstate/reducers/addToCartReducer';
+
 import { deleteWishlistAsync, getAllWishlistAsync } from '../reduxstate/reducers/wishlistReducer';
 
 const WishList = () => {
@@ -29,7 +30,6 @@ const WishList = () => {
   }
   return (
     <div className='container my-3'>
-    <h1>WishList</h1>
     <div className="row row-cols-1 row-cols-md-3 g-4">
     {localStorage.getItem('token')&&wishlist.length!==0?wishlist.map(ele=>{
     return( <div className="col" key={ele.id} ><div className="card" style={{
@@ -50,7 +50,7 @@ const WishList = () => {
           </div>
           </div>
       </div>
-    </div></div>)}):localStorage.getItem('token')?<h1>Please add your wishlist</h1>:<h1>Please login to add wishlist</h1>}
+    </div></div>)}):localStorage.getItem('token')?<h3 style={{"textAlign":"center"}}>Please add your wishlist</h3>:<h1>Please login to add wishlist</h1>}
   </div>
   
   </div>

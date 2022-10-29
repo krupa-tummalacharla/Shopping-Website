@@ -11,7 +11,6 @@ import DetailsPage from './components/DetailsPage';
 import WishList from './components/WishList';
 import AddToCart from './components/AddToCart';
 import CheckOut from './components/CheckOut';
-import Cart from './components/Cart';
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
       <Route exact path='/wishlist' element={<WishList/>}></Route>
       <Route exact path='/addtocart' element={<AddToCart/>}></Route>
       <Route exact path='/checkout' element={<CheckOut/>}></Route>
-      <Route exact path='/cart' element={<Cart/>}></Route>
     </Routes>
     </Router>
     </>

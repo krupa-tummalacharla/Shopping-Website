@@ -19,8 +19,9 @@ const AddToCart = () => {
   const handleCartItemDelete = (ele) => {
     dispatch(deleteCartItemAsync(ele));
   };
-  const handleBuyNow = (ele) => {
-    navigate("/checkouts");
+  const handleBuyNow = (cart) => {
+
+    navigate("/checkout",{state:cart});
   };
   const moveToWishlist=(ele)=>{
     dispatch(deleteCartItemAsync(ele));
@@ -131,7 +132,7 @@ const AddToCart = () => {
                     $<span id="total_cart_amt">{carts.length!==0?Math.round((carts.length!==0?carts.reduce((acc,cur)=>acc+=cur.price,0):0)+50):0}</span>
                   </p>
                 </div>
-                <button className="btn btn-primary text-uppercase">
+                <button className="btn btn-primary text-uppercase" onClick={()=>handleBuyNow(carts)}>
                   checkout
                 </button>
               </div>

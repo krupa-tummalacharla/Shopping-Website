@@ -9,12 +9,14 @@ import {
 import { addToWishlistAsync } from "../reduxstate/reducers/wishlistReducer";
 
 const AddToCart = () => {
+
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.getCart.userCart);
-
+  const total = useSelector((state) => state.getCart.cartTotal);
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getAllCartsAsync());
+    //eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [dispatch]);
   const handleCartItemDelete = (ele) => {
     dispatch(deleteCartItemAsync(ele));
@@ -118,18 +120,18 @@ const AddToCart = () => {
                 <div className="price_individual d-flex justify-content-between">
                   <p>Product amount</p>
                   <p>
-                    $<span>{carts.length!==0?carts.reduce((acc,cur)=>acc+=cur.price,0):0}</span>
+                    $<span>{carts.length!==0?total:0}</span>
                   </p>
                 </div>
                 <div className="price_individual d-flex justify-content-between">
                   <p>Shipping charges</p>
-                  <p>${carts.length!==0?50.00:0}</p>
+                  <p>$50.00</p> 
                 </div>
                 <hr />
                 <div className="total_amt d-flex justify-content-between">
                   <p>The total amount of (including VAT)</p>
                   <p>
-                    $<span id="total_cart_amt">{carts.length!==0?Math.round((carts.length!==0?carts.reduce((acc,cur)=>acc+=cur.price,0):0)+50):0}</span>
+                    $<span id="total_cart_amt">{carts.length!==0?total:0}</span>
                   </p>
                 </div>
                 <button className="btn btn-primary text-uppercase" onClick={()=>handleBuyNow(carts)}>
